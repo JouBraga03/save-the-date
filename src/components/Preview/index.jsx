@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -16,23 +18,38 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url(
         "https://previews.123rf.com/images/demonique/demonique1304/demonique130400005/18847950-wedding-save-the-date-card-with-delicate-grunge-oval-blank-portrait-place-on-brown-heart-patterned-b.jpg"
       )`,
-    backgroundPosition: "center center",
-    backgroundSize: "contain",
-    height: "600px",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: "700px",
     position: "relative"
   }
 }));
 
 const Preview = () => {
   const classes = useStyles();
+  const {
+    fianceName,
+    engagedName,
+    weddingDate,
+    backgroundImage,
+    positionText
+  } = useSelector(state => state);
+
+  console.log("Data -> ", weddingDate);
 
   return (
     <div>
       <Paper className={classes.paper}>
         <div>
-          <Typography variant="h2">NomeNoiva & nomeNoivo</Typography>
-
-          <Typography variant="h2">DATA DO CASAMENTO</Typography>
+          {(fianceName || engagedName) && (
+            <Typography variant="h2">
+              {fianceName} & {engagedName}
+            </Typography>
+          )}
+        </div>
+        <div>
+          {weddingDate && <Typography variant="h2"> {weddingDate} </Typography>}
         </div>
       </Paper>
     </div>

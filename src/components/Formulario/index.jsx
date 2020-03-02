@@ -16,6 +16,7 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider
 } from "@material-ui/pickers";
+import { format } from "date-fns";
 
 const Formulario = () => {
   const {
@@ -27,6 +28,13 @@ const Formulario = () => {
   } = useSelector(state => state);
 
   const dispatch = useDispatch();
+
+  const handlerDate = date =>
+    date &&
+    dispatch({
+      type: "SET_CONFIGS",
+      payload: { weddingDate: format(date, "dd/MM/yyyy") }
+    });
 
   const handlerInputs = async e => {
     if (e && e.target && e.target.name && e.target.value)
@@ -70,7 +78,7 @@ const Formulario = () => {
               label="Date picker dialog"
               format="dd/MM/yyyy"
               value={weddingDate || new Date()}
-              onChange={handlerInputs}
+              onChange={handlerDate}
               KeyboardButtonProps={{
                 "aria-label": "change date"
               }}
