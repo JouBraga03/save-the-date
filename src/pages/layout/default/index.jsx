@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import Formulario from "../../../components/Formulario";
+import Preview from "../../../components/Preview";
 
 const classes = makeStyles(theme => ({
   root: {
@@ -26,7 +27,7 @@ const LayoutDefault = () => (
       </Grid>
 
       <Grid item xs>
-        Componente de save the date vai vir aqui
+        <Preview />
       </Grid>
     </Grid>
   </div>

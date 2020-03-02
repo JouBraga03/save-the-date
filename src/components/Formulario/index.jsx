@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
 
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -16,14 +18,22 @@ import {
 } from "@material-ui/pickers";
 
 const Formulario = () => {
-  const [engagedName, setEngagedName] = useState("");
-  const [fianceName, setFianceName] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState("");
-  const [positionText, setPositionText] = useState("");
-  const [weddingDate, setWeddingDate] = useState(new Date());
+  const {
+    fianceName,
+    engagedName,
+    weddingDate,
+    backgroundImage,
+    positionText
+  } = useSelector(state => state);
 
-  const handleDateChange = async date => {
-    date && setWeddingDate(date);
+  const dispatch = useDispatch();
+
+  const handlerInputs = async e => {
+    if (e && e.target && e.target.name && e.target.value)
+      dispatch({
+        type: "SET_CONFIGS",
+        payload: { [e.target.name]: e.target.value }
+      });
   };
 
   return (
@@ -31,35 +41,36 @@ const Formulario = () => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
-            name="fiance-name"
+            name="fianceName"
             label="Nome da Noiva"
             required
             variant="outlined"
             value={fianceName}
-            onChange={({ target: { value } }) => setFianceName(value)}
+            onChange={handlerInputs}
           />
         </Grid>
 
         <Grid item xs={12}>
           <TextField
-            name="engaged-name"
+            name="engagedName"
             required
             label="Nome do noivo"
             variant="outlined"
             value={engagedName}
-            onChange={({ target: { value } }) => setEngagedName(value)}
+            onChange={handlerInputs}
           />
         </Grid>
 
         <Grid item xs={12}>
           <MuiPickersUtilsProvider utils={DateFnsUtils} locale={brLocale}>
             <KeyboardDatePicker
+              name="weddingDate"
               margin="normal"
               id="date-picker-dialog"
               label="Date picker dialog"
               format="dd/MM/yyyy"
-              value={weddingDate}
-              onChange={handleDateChange}
+              value={weddingDate || new Date()}
+              onChange={handlerInputs}
               KeyboardButtonProps={{
                 "aria-label": "change date"
               }}
@@ -69,11 +80,11 @@ const Formulario = () => {
 
         <Grid item xs={12}>
           <TextField
-            name="background-image"
+            name="backgroundImage"
             label="Url da imagem"
             variant="outlined"
             value={backgroundImage}
-            onChange={({ target: { value } }) => setBackgroundImage(value)}
+            onChange={handlerInputs}
           />
         </Grid>
 
@@ -81,9 +92,9 @@ const Formulario = () => {
           <FormControl component="fieldset">
             <RadioGroup
               aria-label="position"
-              name="position"
+              name="positionText"
               value={positionText}
-              onChange={({ target: { value } }) => setPositionText(value)}
+              onChange={handlerInputs}
               row
             >
               <FormControlLabel
