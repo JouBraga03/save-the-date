@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -14,9 +14,11 @@ import brLocale from "date-fns/locale/pt-BR";
 
 import {
   KeyboardDatePicker,
-  MuiPickersUtilsProvider
+  MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import { format } from "date-fns";
+
+import SetPosition from "../../services/positions";
 
 const Formulario = () => {
   const {
@@ -24,24 +26,31 @@ const Formulario = () => {
     engagedName,
     weddingDate,
     backgroundImage,
-    positionText
-  } = useSelector(state => state);
+    positionText,
+  } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
-  const handlerDate = date =>
+  const handlerDate = (date) =>
     date &&
     dispatch({
       type: "SET_CONFIGS",
-      payload: { weddingDate: format(date, "dd/MM/yyyy") }
+      payload: { weddingDate: format(date, "dd/MM/yyyy") },
     });
 
-  const handlerInputs = async e => {
+  const handlerInputs = async (e) => {
     if (e && e.target && e.target.name && e.target.value)
       dispatch({
         type: "SET_CONFIGS",
-        payload: { [e.target.name]: e.target.value }
+        payload: { [e.target.name]: e.target.value },
       });
+  };
+
+  const handlerSetPosition = (e, position) => {
+    console.log(e.target.name);
+    handlerInputs(e);
+
+    SetPosition[position]();
   };
 
   return (
@@ -80,7 +89,7 @@ const Formulario = () => {
               value={weddingDate || new Date()}
               onChange={handlerDate}
               KeyboardButtonProps={{
-                "aria-label": "change date"
+                "aria-label": "change date",
               }}
             />
           </MuiPickersUtilsProvider>
@@ -102,29 +111,33 @@ const Formulario = () => {
               aria-label="position"
               name="positionText"
               value={positionText}
-              onChange={handlerInputs}
+              onChange={handlerSetPosition}
               row
             >
               <FormControlLabel
-                value="top"
+                name="topCenter"
+                value="topCenter"
                 control={<Radio color="primary" />}
                 label="Topo centro"
                 labelPlacement="bottom"
               />
               <FormControlLabel
-                value="start"
+                name="center"
+                value="center"
                 control={<Radio color="primary" />}
-                label="Baixo centro"
+                label="Centro"
                 labelPlacement="bottom"
               />
               <FormControlLabel
-                value="bottom"
+                name="leftCenter"
+                value="leftCenter"
                 control={<Radio color="primary" />}
                 label="Esquerda centro"
                 labelPlacement="bottom"
               />
               <FormControlLabel
-                value="end"
+                name="rightCenter"
+                value="rightCenter"
                 control={<Radio color="primary" />}
                 label="Direita Centro"
                 labelPlacement="bottom"

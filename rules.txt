@@ -1,0 +1,35 @@
+
+Poderá alinha os nomes nos seguintes cantos
+    - Canto esquerdo superior
+    - Canto esquerdo inferior
+    
+    - Canto direito superior
+    - Canto direito inferior
+    
+    - Topo
+    - bottom
+
+    - Center
+
+ - Campo de posicionamento do texto deverá ser um radio button, podendo assim habilitar somente uma posição
+
+ - Nome do noivo e noiva input de text e ambos são [Obrigatórios]
+
+ - Campo da data deverá ser um input de datapicker somente a data. [Obrigatório]
+
+ - Imagem de fundo por enquanto vai ser um input do tipo text recebendo a url da imagem.
+
+Formulário sempre visível e quando o usuário clicar ja realizar a alteração de
+imediáto para que ele possa ver as alterações.
+
+Componente deve receber as seguintes proprieradades
+    - Nome do noivo
+    - Nome da noiva
+    - Imagem de fundo
+    - Posição dos nomes
+    - Data de casamento
+
+Sendo as propriedades obrigatórias
+    - Nome do noivo
+    - Nome da noiva
+    - Data de casamento
