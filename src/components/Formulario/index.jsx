@@ -121,28 +121,28 @@ const Formulario = () => {
                 value="topCenter"
                 control={<Radio color="primary" />}
                 label="Topo centro"
-                labelPlacement="Topo centro"
+                labelPlacement="bottom"
               />
               <FormControlLabel
                 name="defaultCenter"
                 value="defaultCenter"
                 control={<Radio color="primary" />}
                 label="Centro"
-                labelPlacement="Centro"
+                labelPlacement="bottom"
               />
               <FormControlLabel
                 name="leftCenter"
                 value="leftCenter"
                 control={<Radio color="primary" />}
                 label="Esquerda centro"
-                labelPlacement="Esquerda centro"
+                labelPlacement="bottom"
               />
               <FormControlLabel
                 name="rightCenter"
                 value="rightCenter"
                 control={<Radio color="primary" />}
                 label="Direita Centro"
-                labelPlacement="Direita Centro"
+                labelPlacement="bottom"
               />
 
               <FormControlLabel
@@ -150,7 +150,7 @@ const Formulario = () => {
                 value="bottomCenter"
                 control={<Radio color="primary" />}
                 label="Baixo centro"
-                labelPlacement="Baixo centro"
+                labelPlacement="bottom"
               />
             </RadioGroup>
           </FormControl>
