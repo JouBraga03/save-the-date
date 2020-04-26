@@ -18,8 +18,6 @@ import {
 } from "@material-ui/pickers";
 import { format } from "date-fns";
 
-import SetPosition from "../../services/positions";
-
 const Formulario = () => {
   const {
     fianceName,
@@ -46,11 +44,15 @@ const Formulario = () => {
       });
   };
 
-  const handlerSetPosition = (e, position) => {
-    console.log(e.target.name);
+  const handlerSetPosition = (e, positionText) => {
     handlerInputs(e);
 
-    SetPosition[position]();
+    dispatch({
+      type: "SET_CONFIGS",
+      payload: {
+        positionText,
+      },
+    });
   };
 
   return (
@@ -119,28 +121,36 @@ const Formulario = () => {
                 value="topCenter"
                 control={<Radio color="primary" />}
                 label="Topo centro"
-                labelPlacement="bottom"
+                labelPlacement="Topo centro"
               />
               <FormControlLabel
-                name="center"
-                value="center"
+                name="defaultCenter"
+                value="defaultCenter"
                 control={<Radio color="primary" />}
                 label="Centro"
-                labelPlacement="bottom"
+                labelPlacement="Centro"
               />
               <FormControlLabel
                 name="leftCenter"
                 value="leftCenter"
                 control={<Radio color="primary" />}
                 label="Esquerda centro"
-                labelPlacement="bottom"
+                labelPlacement="Esquerda centro"
               />
               <FormControlLabel
                 name="rightCenter"
                 value="rightCenter"
                 control={<Radio color="primary" />}
                 label="Direita Centro"
-                labelPlacement="bottom"
+                labelPlacement="Direita Centro"
+              />
+
+              <FormControlLabel
+                name="bottomCenter"
+                value="bottomCenter"
+                control={<Radio color="primary" />}
+                label="Baixo centro"
+                labelPlacement="Baixo centro"
               />
             </RadioGroup>
           </FormControl>

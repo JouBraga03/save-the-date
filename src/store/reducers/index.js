@@ -3,7 +3,7 @@ const INITIAL_STATE = {
   fianceName: "",
   backgroundImage: "",
   positionText: "",
-  weddingDate: ""
+  weddingDate: "",
 };
 
 export default function configs(state = INITIAL_STATE, actions) {
@@ -16,7 +16,7 @@ export default function configs(state = INITIAL_STATE, actions) {
         backgroundImage:
           actions.payload.backgroundImage || state.backgroundImage,
         positionText: actions.payload.positionText || state.positionText,
-        weddingDate: actions.payload.weddingDate || state.weddingDate
+        weddingDate: actions.payload.weddingDate || state.weddingDate,
       };
     }
 

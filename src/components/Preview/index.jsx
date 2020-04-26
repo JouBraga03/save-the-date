@@ -7,10 +7,13 @@ import Paper from "@material-ui/core/Paper";
 
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(theme => ({
+import "./index.css";
+
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
+
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -22,8 +25,8 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "700px",
-    position: "relative"
-  }
+    position: "relative",
+  },
 }));
 
 const Preview = () => {
@@ -32,15 +35,13 @@ const Preview = () => {
     fianceName,
     engagedName,
     weddingDate,
-    backgroundImage,
-    positionText
-  } = useSelector(state => state);
-
-  console.log("Data -> ", weddingDate);
+    // backgroundImage,
+    positionText,
+  } = useSelector((state) => state);
 
   return (
     <div>
-      <Paper className={classes.paper}>
+      <Paper className={`${classes.paper} ${positionText}`}>
         <div>
           {(fianceName || engagedName) && (
             <Typography variant="h2">
