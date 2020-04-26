@@ -37,23 +37,19 @@ const Formulario = () => {
     });
 
   const handlerInputs = async (e) => {
-    if (e && e.target && e.target.name && e.target.value)
-      dispatch({
-        type: "SET_CONFIGS",
-        payload: { [e.target.name]: e.target.value },
-      });
+    dispatch({
+      type: "SET_CONFIGS",
+      payload: { [e.target.name]: e.target.value },
+    });
   };
 
-  const handlerSetPosition = (e, positionText) => {
-    handlerInputs(e);
-
+  const handlerSetPosition = (e) =>
     dispatch({
       type: "SET_CONFIGS",
       payload: {
-        positionText,
+        positionText: e.target.value,
       },
     });
-  };
 
   return (
     <>

@@ -15,17 +15,28 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
+    display: "flex",
+    flexWrap: "wrap",
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
+    fontWeight: "600",
     backgroundImage: `url(
-        "https://previews.123rf.com/images/demonique/demonique1304/demonique130400005/18847950-wedding-save-the-date-card-with-delicate-grunge-oval-blank-portrait-place-on-brown-heart-patterned-b.jpg"
+        "https://thumbs.dreamstime.com/z/floral-wreath-wedding-save-date-card-vintage-meadow-flowers-grass-watercolor-empty-space-your-text-summer-herbs-76692842.jpg"
       )`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "700px",
     position: "relative",
+  },
+
+  weddingDate: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    flexGrow: 1,
   },
 }));
 
@@ -49,7 +60,7 @@ const Preview = () => {
             </Typography>
           )}
         </div>
-        <div>
+        <div className={classes.weddingDate}>
           {weddingDate && <Typography variant="h2"> {weddingDate} </Typography>}
         </div>
       </Paper>

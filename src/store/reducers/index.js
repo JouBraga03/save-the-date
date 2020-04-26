@@ -9,14 +9,11 @@ const INITIAL_STATE = {
 export default function configs(state = INITIAL_STATE, actions) {
   switch (actions.type) {
     case "SET_CONFIGS": {
+      const values = actions.payload;
+
       return {
         ...state,
-        engagedName: actions.payload.engagedName || state.engagedName,
-        fianceName: actions.payload.fianceName || state.fianceName,
-        backgroundImage:
-          actions.payload.backgroundImage || state.backgroundImage,
-        positionText: actions.payload.positionText || state.positionText,
-        weddingDate: actions.payload.weddingDate || state.weddingDate,
+        ...values,
       };
     }
 
